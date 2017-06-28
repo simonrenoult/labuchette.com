@@ -1,0 +1,16 @@
+{
+  "name": "labuchette",
+  "version": "0.0.0",
+  "description": "Information website about the \"La buchette\" card game",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node bin/www"
+  },
+  "keywords": [],
+  "author": "Simon Renoult <simon.renoult@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
+}
