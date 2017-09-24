@@ -1,10 +1,10 @@
 <score>
 
-  <div class="box" if={ players.length > 1 }>
+  <div class="box" if={ activePlayers.length > 1 }>
     <a href="#" onclick="{ sortByHigherScoreFirst }">Trier par score décroissant</a>
   </div>
 
-  <div each={ players } class="box">
+  <div each={ activePlayers } class="box">
     <div class="columns">
       <div class="column">
         <span class="title player-name">{ this.name }</span>
@@ -75,7 +75,7 @@
   </div>
   
   <script>
-    this.players = []
+    this.activePlayers = []
     this.playersHistory = JSON.parse(window.localStorage.getItem("players-history") || "[]")
     this.error = null
     
@@ -90,7 +90,7 @@
       
       this.error = null;
       this.refs.name.value = ""
-      this.players.push({name: playerName, score: 0})
+      this.activePlayers.push({name: playerName, score: 0})
       document.getElementById("register-player").focus()
       
       _savePlayerName.call(this, playerName)
@@ -120,7 +120,7 @@
       this.error = null;
       this.refs.name.value = ""
       
-      this.players.push({name: playerName, score: 0})
+      this.activePlayers.push({name: playerName, score: 0})
 
       document.getElementById("register-player").focus()
     }
@@ -136,7 +136,7 @@
         return false
       }
       
-      const playerAlreadyInGame = this.players.some(player => player.name.toLowerCase() === playerName.toLowerCase())
+      const playerAlreadyInGame = this.activePlayers.some(player => player.name.toLowerCase() === playerName.toLowerCase())
       if (playerAlreadyInGame) {
         this.error = { message: "Ce nom de joueur est déjà pris." }
         return false
@@ -180,7 +180,7 @@
     
     sortByHigherScoreFirst(e) {
       e.preventDefault()
-      this.players = this.players.sort((playerA, playerB) => playerB.score - playerA.score);
+      this.activePlayers = this.activePlayers.sort((playerA, playerB) => playerB.score - playerA.score);
     }
 
   </script>
