@@ -79,6 +79,12 @@
         return
       }
       
+      const playerAlreadyInGame = this.players.some(player => player.name.toLowerCase() === playerName.toLowerCase())
+      if (playerAlreadyInGame) {
+        this.error = { message: "Ce nom de joueur est déjà pris." }
+        return;
+      }
+      
       this.error = null;
       this.refs.name.value = ""
       this.players.push({name: playerName, score: 0})
