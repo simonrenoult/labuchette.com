@@ -146,6 +146,11 @@
         return false
       }
       
+      if (playerName.length > 15) {
+        this.error = { message: "Le nom du joueur doit faire moins de 15 caractères." }
+        return false
+      }
+      
       const playerAlreadyInGame = this.activePlayers.some(player => player.name.toLowerCase() === playerName.toLowerCase())
       if (playerAlreadyInGame) {
         this.error = { message: "Ce nom de joueur est déjà pris." }
