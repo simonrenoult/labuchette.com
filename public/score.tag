@@ -40,7 +40,7 @@
   <div class="box">
     <form class="columns" onsubmit="{ registerPlayer }">
         <div class="column">
-          <input id="register-player" class="input" ref="name" type="text" placeholder="Nom du joueur" autofocus>
+          <input id="register-player" class="input" ref="name" type="text" placeholder="Nom du joueur" autofocus autocomplete="off">
         </div>
         <div class="column">
           <button type="submit" class="button is-primary">Ajouter un joueur</button>
@@ -59,10 +59,24 @@
         </div>
       </div>
     </div>
+    
+    <div id="player-history" class="field is-grouped" if={ playersHistory.length }>
+      <span class="control">
+        <button class="button is-danger is-outlined" onclick="{ clearHistory }">
+          Tout supprimer
+        </button>
+      </span>
+      <span class="control" each={ playerName in playersHistory }>
+        <button class="button is-primary is-outlined" onclick="{ registerPlayerFromHistory }">
+          { playerName }
+        </button>
+      </span>
+    </div>
   </div>
-
+  
   <script>
     this.players = []
+    this.playersHistory = JSON.parse(window.localStorage.getItem("players-history") || "[]")
     this.error = null
     
     registerPlayer(e) {
@@ -89,19 +103,37 @@
       this.refs.name.value = ""
       this.players.push({name: playerName, score: 0})
       document.getElementById("register-player").focus()
+      
+      _savePlayerName.call(this, playerName)
     }
     
     function _savePlayerName(newPlayerNameToAdd) {
-      const playerList = JSON.parse(window.localStorage.getItem("player-name-list") || "[]")
-      const playerNameAlreadyExists = playerList.some(nameInList => nameInList.toLowerCase() === newPlayerNameToAdd.toLowerCase())
+      const storedPlayersHistory = JSON.parse(window.localStorage.getItem("players-history") || "[]")
+      
+      const playerNameAlreadyExists = storedPlayersHistory.some(nameInList => nameInList.toLowerCase() === newPlayerNameToAdd.toLowerCase())
       if (playerNameAlreadyExists) {
         return
       }
-      playerList.push({
-        name: newPlayerNameToAdd,
-        date: (new Date()).getTime()
-      })
-      window.localStorage.setItem("player-name-list", JSON.stringify(playerList))
+
+      this.playersHistory.push(newPlayerNameToAdd)
+      window.localStorage.setItem("players-history", JSON.stringify(this.playersHistory))
+    }
+    
+    registerPlayerFromHistory(e) {
+      e.preventDefault()
+      
+      this.error = null;
+      this.refs.name.value = ""
+      
+      this.players.push({name: e.item.playerName, score: 0})
+
+      document.getElementById("register-player").focus()
+    }
+    
+    clearHistory(e) {
+      e.preventDefault()
+      this.playersHistory = []
+      window.localStorage.setItem("players-history", "[]")
     }
     
     addOne(e) {
