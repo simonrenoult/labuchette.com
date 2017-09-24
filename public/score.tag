@@ -4,48 +4,53 @@
     <a href="#" onclick="{ sortByHigherScoreFirst }">Trier par score décroissant</a>
   </div>
 
-  <div each={ activePlayers } class="box">
-    <div class="columns">
-      <div class="column">
-        <span class="title player-name">{ this.name }</span>
-      </div>
-      <div class="column">
-        <div class="field is-grouped is-grouped-right">
-          <p class="control">
-            <button if={ !this.manualScore } type="button" class="button is-info">Score : { this.score || 0}</button>
-          </p>
-          <p class="control" if={ this.manualScore }>
-            <input class="input is-info" type="number" ref="manualScore" placeholder="Nouveau score" value={ this.score }>
-          </p>
-          <p class="control" if={ this.manualScore }>
-            <button class="button is-info" onclick={ setScoreManually }>OK</button>
-          </p>
-          <p class="control">
-            <button class="button is-primary" onclick={ parent.addOne }>+1</button>
-          </p>
-          <p class="control">
-            <button class="button is-primary" onclick={ parent.addFive }>+5</button>
-          </p>
-          <p class="control">
-            <button class="button is-warning" onclick={ parent.toggleManualScore }>Manual</button>
-          </p>
-          <p class="control">
-            <button class="button is-danger" onclick={ parent.reset }>Reset</button>
-          </p>
+  <div class="active-player-list">
+    <div class="card active-player" each={ activePlayers }>
+      <header class="card-header">
+        <div class="card-header-title is-mobile">
+          { this.name } : { this.score }
         </div>
+      </header>
+      <div class="card-content" if={ this.manualScore }>
+        <form class="is-mobile" onsubmit="{ registerPlayer }">
+          <div class="field has-addons">
+            <div class="control is-expanded">
+              <input class="input is-primary" type="number" ref="manualScore" placeholder="Nouveau score" value={ this.score }>
+              </div>
+              <div class="control">
+                <button class="button is-primary" onclick={ setScoreManually }>
+                  OK
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <footer class="card-footer">
+          <a href="#" class="card-footer-item" onclick={ parent.addOne }>+1</a>
+          <a href="#" class="card-footer-item" onclick={ parent.addFive }>+5</a>
+          <a href="#" class="card-footer-item" onclick={ parent.toggleManualScore }>Edit</a>
+          <a href="#" class="card-footer-item" onclick={ parent.reset }>Reset</a>
+        </footer>
       </div>
-    </div>
   </div>
   
   <div class="box">
-    <form class="columns" onsubmit="{ registerPlayer }">
-        <div class="column">
-          <input id="register-player" class="input" ref="name" type="text" placeholder="Nom du joueur" autofocus autocomplete="off">
-        </div>
-        <div class="column">
-          <button type="submit" class="button is-primary">Ajouter un joueur</button>
-        </div>
-    </form>
+    <div class="columns">
+      <div class="column">
+        <form class="is-mobile" onsubmit="{ registerPlayer }">
+          <div class="field has-addons">
+            <div class="control is-expanded">
+              <input id="register-player" class="input" ref="name" type="text" placeholder="Nom du joueur" autofocus autocomplete="off">
+            </div>
+            <div class="control">
+              <a class="button is-primary">
+                Ajouter
+              </a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
     
     <div class="message is-danger" if={ error }>
       <div class="columns">
