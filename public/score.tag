@@ -175,7 +175,7 @@
     
     toggleManualScore(e) {
       e.preventDefault()
-      e.item.manualScore = true
+      e.item.manualScore = !e.item.manualScore
     }
     
     sortByHigherScoreFirst(e) {
