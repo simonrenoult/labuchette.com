@@ -7,12 +7,17 @@
   <div class="active-player-list">
     <div class="card active-player" each={ activePlayers }>
       <header class="card-header">
-        <div class="card-header-title is-mobile">
-          { this.name } : { this.score }
+        <div class="card-header-title columns is-mobile">
+          <div class="column is-9">
+            { this.name }
+          </div>
+          <div class="column is-3 is-pulled-right">
+            <span class="tag is-primary is-medium">{ this.score }</span>
+          </div>
         </div>
       </header>
       <div class="card-content" if={ this.manualScore }>
-        <form class="is-mobile" onsubmit="{ registerPlayer }">
+        <form onsubmit="{ registerPlayer }">
           <div class="field has-addons">
             <div class="control is-expanded">
               <input class="input is-primary" type="number" ref="manualScore" placeholder="Nouveau score" value={ this.score }>
@@ -29,7 +34,7 @@
           <a href="#" class="card-footer-item" onclick={ parent.addOne }>+1</a>
           <a href="#" class="card-footer-item" onclick={ parent.addFive }>+5</a>
           <a href="#" class="card-footer-item" onclick={ parent.toggleManualScore }>Edit</a>
-          <a href="#" class="card-footer-item" onclick={ parent.reset }>Reset</a>
+          <a href="#" class="card-footer-item is-danger" onclick={ parent.reset }>Reset</a>
         </footer>
       </div>
   </div>
@@ -37,15 +42,15 @@
   <div class="box">
     <div class="columns">
       <div class="column">
-        <form class="is-mobile" onsubmit="{ registerPlayer }">
+        <form onsubmit="{ registerPlayer }">
           <div class="field has-addons">
             <div class="control is-expanded">
               <input id="register-player" class="input" ref="name" type="text" placeholder="Nom du joueur" autofocus autocomplete="off">
             </div>
             <div class="control">
-              <a class="button is-primary">
+              <button type="submit" class="button is-primary">
                 Ajouter
-              </a>
+              </button>
             </div>
           </div>
         </form>
