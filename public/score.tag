@@ -65,7 +65,7 @@
       </div>
     </div>
     
-    <div id="player-history" class="field is-grouped" if={ playersHistory.length }>
+    <div id="player-history" class="field is-grouped is-grouped-multiline" if={ playersHistory.length }>
       <span class="control">
         <button class="button is-danger is-outlined" onclick="{ clearHistory }">
           Tout supprimer
