@@ -83,20 +83,9 @@
       e.preventDefault()
       
       const playerName = this.refs.name.value
-      if (!playerName) {
-        this.error = { message: "Le nom du joueur ne peut être vide." }
+      const isValid = _validatePlayerName.call(this, playerName)
+      if (!isValid) {
         return
-      }
-      
-      if (playerName.length < 3) {
-        this.error = { message: "Le nom du joueur doit faire plus de 3 caractères." }
-        return
-      }
-      
-      const playerAlreadyInGame = this.players.some(player => player.name.toLowerCase() === playerName.toLowerCase())
-      if (playerAlreadyInGame) {
-        this.error = { message: "Ce nom de joueur est déjà pris." }
-        return;
       }
       
       this.error = null;
@@ -122,18 +111,45 @@
     registerPlayerFromHistory(e) {
       e.preventDefault()
       
+      const playerName = e.item.playerName
+      const isValid = _validatePlayerName.call(this, playerName)
+      if (!isValid) {
+        return
+      }
+      
       this.error = null;
       this.refs.name.value = ""
       
-      this.players.push({name: e.item.playerName, score: 0})
+      this.players.push({name: playerName, score: 0})
 
       document.getElementById("register-player").focus()
+    }
+    
+    function _validatePlayerName(playerName) {
+      if (!playerName) {
+        this.error = { message: "Le nom du joueur ne peut être vide." }
+        return false
+      }
+      
+      if (playerName.length < 3) {
+        this.error = { message: "Le nom du joueur doit faire plus de 3 caractères." }
+        return false
+      }
+      
+      const playerAlreadyInGame = this.players.some(player => player.name.toLowerCase() === playerName.toLowerCase())
+      if (playerAlreadyInGame) {
+        this.error = { message: "Ce nom de joueur est déjà pris." }
+        return false
+      }
+
+      return true
     }
     
     clearHistory(e) {
       e.preventDefault()
       this.playersHistory = []
       window.localStorage.setItem("players-history", "[]")
+      this.error = ""
     }
     
     addOne(e) {
