@@ -7,8 +7,8 @@
           <div class="column is-9">
             { this.name }
           </div>
-          <div class="column is-3 is-pulled-right">
-            <span class="tag is-primary is-medium">{ this.score }</span>
+          <div class="column is-3">
+            <span class="tag is-primary is-medium is-pulled-right">{ this.score }</span>
           </div>
         </div>
       </header>
