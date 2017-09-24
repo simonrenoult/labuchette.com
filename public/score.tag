@@ -91,6 +91,19 @@
       document.getElementById("register-player").focus()
     }
     
+    function _savePlayerName(newPlayerNameToAdd) {
+      const playerList = JSON.parse(window.localStorage.getItem("player-name-list") || "[]")
+      const playerNameAlreadyExists = playerList.some(nameInList => nameInList.toLowerCase() === newPlayerNameToAdd.toLowerCase())
+      if (playerNameAlreadyExists) {
+        return
+      }
+      playerList.push({
+        name: newPlayerNameToAdd,
+        date: (new Date()).getTime()
+      })
+      window.localStorage.setItem("player-name-list", JSON.stringify(playerList))
+    }
+    
     addOne(e) {
       e.preventDefault()
       e.item.score += 1
