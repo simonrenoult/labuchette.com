@@ -1,9 +1,5 @@
 <score>
 
-  <div class="box" if={ activePlayers.length > 1 }>
-    <a href="#" onclick="{ sortByHigherScoreFirst }">Trier par score décroissant</a>
-  </div>
-
   <div class="active-player-list">
     <div class="card active-player" each={ activePlayers }>
       <header class="card-header">
@@ -37,6 +33,10 @@
           <a href="#" class="card-footer-item is-danger" onclick={ parent.reset }>Reset</a>
         </footer>
       </div>
+  </div>
+
+  <div class="box" if={ activePlayers.length > 1 }>
+    <a href="#" onclick="{ sortByHigherScoreFirst }">Trier par score décroissant</a>
   </div>
   
   <div class="box">
@@ -142,7 +142,7 @@
       }
       
       if (playerName.length < 3) {
-        this.error = { message: "Le nom du joueur doit faire plus de 3 caractères." }
+        this.error = { message: "Le nom du joueur doit faire au moins 3 caractères." }
         return false
       }
       
