@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="shortcut icon" href="favicon.ico" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.2/css/bulma.min.css"/>
+  <style>
+    body {
+      margin: 20px;
+    }
+
+    p, li {
+      text-align: justify;
+      font-size: 15.5px;
+    }
+
+    footer {
+      text-align: right;
+    }
+    
+    a {
+      text-decoration: underline;
+    }
+    
+    ul li {
+      list-style-type: none;
+    }
+    
+    .content ul {
+      margin-left: 0;
+    }
+  </style>
+
+  <title>La Buchette | Compteur de points</title>
+
+</head>
+<body class="content">
+  <score></score>
+  
+  <footer>Fait avec amour par <a href="https://twitter.com/simonrenoult">Simon Renoult</a>.</footer>
+  
+  <script src="score.tag" type="riot/tag"></script>
+  <script src="https://cdn.jsdelivr.net/npm/riot@3.7/riot+compiler.min.js"></script>
+  <script type="text/javascript">riot.mount('score')</script>
+</body>
+</html>
