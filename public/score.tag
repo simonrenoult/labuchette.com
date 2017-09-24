@@ -31,6 +31,7 @@
           <a href="#" class="card-footer-item" onclick={ parent.addFive }>+5</a>
           <a href="#" class="card-footer-item" onclick={ parent.toggleManualScore }>Edit</a>
           <a href="#" class="card-footer-item is-danger" onclick={ parent.reset }>Reset</a>
+          <a href="#" class="card-footer-item is-critical" onclick={ parent.removePlayer }>X</a>
         </footer>
       </div>
   </div>
@@ -196,6 +197,17 @@
     sortByHigherScoreFirst(e) {
       e.preventDefault()
       this.activePlayers = this.activePlayers.sort((playerA, playerB) => playerB.score - playerA.score);
+    }
+    
+    removePlayer(e) {
+      e.preventDefault()
+      const playerToRemoveIndex = this.activePlayers.findIndex(player => {
+        return player.name === e.item.name
+      })
+      
+      this.activePlayers = this.activePlayers.filter((player, i) => {
+        return i !== playerToRemoveIndex
+      })
     }
 
   </script>
