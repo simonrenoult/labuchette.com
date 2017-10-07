@@ -9,6 +9,10 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.3/css/bulma.min.css"/>
   <style>
+    html {
+      background-color: #02d0b2;
+    }
+  
     body {
       margin: 20px;
     }
@@ -21,6 +25,15 @@
     body > footer {
       margin-top: 20px;
       text-align: right;
+    }
+    
+    body > footer > a {
+      color: inherit;
+      font-weight: bold;
+    }
+    
+    body > footer > a:hover {
+      text-decoration: underline;
     }
     
     ul li {
@@ -37,6 +50,7 @@
     
     .active-player {
       margin-bottom: 10px;
+      border-radius: 5px;
     }
     
     a.is-danger {
@@ -51,6 +65,19 @@
       background-color: #ff6282;
       color: #fff;
     }
+    
+    .card-header-title {
+      max-height: 70px;
+    }
+    
+    .card-footer {
+      max-height: 40px;
+    }
+    
+    .card-footer-item-1,
+    .card-footer-item-5 {
+      font-weight: bold;
+    }
 
   </style>
 
@@ -58,6 +85,10 @@
 
 </head>
 <body class="content">
+  <div>
+    <header></header>
+  </div>
+  
   <score></score>
   
   <footer>Fait avec amour par <a href="https://twitter.com/simonrenoult">Simon Renoult</a>.</footer>

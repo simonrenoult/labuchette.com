@@ -27,8 +27,8 @@
           </form>
         </div>
         <footer class="card-footer">
-          <a href="#" class="card-footer-item" onclick={ parent.addOne }>+1</a>
-          <a href="#" class="card-footer-item" onclick={ parent.addFive }>+5</a>
+          <a href="#" class="card-footer-item card-footer-item-1" onclick={ parent.addOne }>+1</a>
+          <a href="#" class="card-footer-item card-footer-item-5" onclick={ parent.addFive }>+5</a>
           <a href="#" class="card-footer-item" onclick={ parent.toggleManualScore }>Edit</a>
           <a href="#" class="card-footer-item is-danger" onclick={ parent.reset }>Reset</a>
           <a href="#" class="card-footer-item is-critical" onclick={ parent.removePlayer }>X</a>
